@@ -1,5 +1,5 @@
 package learn.library.data.model;
 
-public enum Category {
+public enum BookCategory {
     // TODO: enum for storing types of books (Fantasy, Mystery, Si-Fi etc)
 }
