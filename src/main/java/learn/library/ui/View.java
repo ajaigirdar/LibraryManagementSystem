@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Scanner;
 
 public class View {
-
-    // TODO: handles all IO operations
     private Scanner console = new Scanner(System.in);
 
     public void displayMenu() {
@@ -53,12 +51,41 @@ public class View {
         return new Book(category,shelfNumber,position,yearPublished,author,isbn);
     }
 
-    public void showMessage(String message){
+    public void displayMessage(String message){
         System.out.println(message);
     }
 
-    public void printAllBooks(List<Book> books){
+    public String readString(String prompt){
+        return null;
+    }
 
+    public int readInt(String prompt, int min, int max){
+        return 0;
+    }
+
+    public void printAllBooks(List<Book> books){
+        if (books == null || books.isEmpty()){
+            System.out.println("No book found.");
+            return;
+        }
+
+        System.out.printf("%-10s %-15s %-11s %-18s %-20s %-20s%n",
+                "Category", "Shelf Number", "Position", "Year Published", "Author", "ISBN");
+        System.out.println(
+                "-------------------------------------------------------------------------------------------------");
+
+        for (Book book : books) {
+            System.out.printf("%-15s %-13s %-14s %-10s %-20s %-20s%n",
+                    book.getCategory(),
+                    book.getShelfNumber(),
+                    book.getPosition(),
+                    book.getYearPublished(),
+                    book.getAuthor(),
+                    book.getIsbn());
+            System.out.println(
+                    "-------------------------------------------------------------------------------------------------");
+
+        }
     }
 
     public void printBooksByCategory(List<Book> books){

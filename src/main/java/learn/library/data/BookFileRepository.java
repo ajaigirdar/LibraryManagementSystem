@@ -10,34 +10,41 @@ import java.util.List;
 
 public class BookFileRepository implements BookRepository{
     private final String filePath;
+    private static final String HEADER = "Category,Shelf Number,Position,Year Published,Author,ISBN";
     private final List<Book> books = new ArrayList<>();
 
     public BookFileRepository(String filePath) {
         this.filePath = filePath;
+        ensureFileExists();
         loadBooksFromCsv();
     }
 
-    public boolean add(Book book) throws DataAccessException {
+    private void ensureFileExists() {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            try(PrintWriter writer = new PrintWriter(file)) {
+                writer.println(HEADER);
+            } catch (IOException e ) {
+                throw new RuntimeException("Could not create file: " + filePath, e);
+            }
+        }
+    }
+
+    public boolean add(Book book) {
         books.add(book);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-            File file = new File(filePath);
-            if (file.length() == 0) {
-                writer.write("Category,Shelf Number,Position,Year Published,Author,ISBN");
-                writer.newLine();
-            }
-
-            writer.write(
-                    book.getCategory() + "," +
-                    book.getShelfNumber() + "," +
-                    book.getPosition() + "," +
-                    book.getYearPublished() + "," +
-                    book.getAuthor() + "," +
-                    book.getIsbn());
-            writer.newLine();
+            writer.write(String.format("%s,%d,%d,%d,%s,%s%n",
+                    book.getCategory(),
+                    book.getShelfNumber(),
+                    book.getPosition(),
+                    book.getYearPublished(),
+                    book.getAuthor(),
+                    book.getIsbn()));
             return true;
         } catch (IOException ex) {
-            throw new DataAccessException("Error adding book to CSV file.", ex);
+            books.remove(book);
+            return false;
         }
     }
 

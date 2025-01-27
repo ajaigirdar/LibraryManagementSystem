@@ -9,18 +9,10 @@ import java.util.List;
 import java.util.zip.DataFormatException;
 
 public class BookService {
-
-    // TODO: validate user input before saving
-    // validate(Book)
-
     private final BookRepository repository;
 
     public BookService(BookRepository repository) {
         this.repository = repository;
-    }
-
-    public List<Book> findAll() throws DataFormatException{
-        return repository.findAll();
     }
 
     public boolean add(Book book) throws DataAccessException{
@@ -40,9 +32,27 @@ public class BookService {
         return repository.add(book);
     }
 
-    public Book findByCategory(BookCategory category) throws DataAccessException{
+    public boolean update(Book book) throws DataAccessException{
+        return false;
+    }
+
+    public boolean delete(Book book) throws DataAccessException{
+        return false;
+    }
+
+    public List<Book> findAll() throws DataFormatException{
+        return repository.findAll();
+    }
+
+    List<Book> findByCategory(BookCategory category) throws DataAccessException{
         return null;
     }
+
+    public Book findByDetails(BookCategory category, int shelfNumber, int position) throws DataAccessException {
+        return null;
+    }
+
+
 
 
 

@@ -6,9 +6,11 @@ import learn.library.domain.BookService;
 import learn.library.ui.Controller;
 import learn.library.ui.View;
 
+import java.util.zip.DataFormatException;
+
 
 public class App {
-    public static void main(String[] args) throws DataAccessException {
+    public static void main(String[] args) throws DataAccessException, DataFormatException {
         BookFileRepository repository = new BookFileRepository("./data/books.csv");
         BookService service = new BookService(repository);
         View view = new View();
@@ -34,9 +36,5 @@ public class App {
      */
 
     }
-
-
-
-
 }
 

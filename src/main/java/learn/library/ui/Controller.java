@@ -1,9 +1,11 @@
 package learn.library.ui;
 
+import learn.library.data.BookFileRepository;
 import learn.library.data.DataAccessException;
 import learn.library.data.model.Book;
 import learn.library.domain.BookService;
 
+import java.util.List;
 import java.util.zip.DataFormatException;
 
 public class Controller {
@@ -19,7 +21,7 @@ public class Controller {
 
 
 
-    public void run() throws DataAccessException {
+    public void run() throws DataAccessException, DataFormatException {
         boolean running = true;
 
         while (running) {
@@ -31,7 +33,11 @@ public class Controller {
                     System.out.println("Goodbye!");
                     running = false;
                 }
-                case 1 -> System.out.println("Find Books by Category - Not Implemented");
+                case 1 -> {
+                    System.out.println("Find Books by Category - Not Implemented");
+                    System.out.println("Just printing all books for now.");
+                    displayAllBooks();
+                }
                 case 2 -> addBook();
                 case 3 -> System.out.println("Update a Book - Not Implemented");
                 case 4 -> System.out.println("Remove a Book - Not Implemented");
@@ -40,8 +46,9 @@ public class Controller {
         }
     }
 
-    private void displayAllBooks() throws DataAccessException{
-
+    private void displayAllBooks() throws DataFormatException {
+        List<Book> books = service.findAll();
+        view.printAllBooks(books);
     }
 
     private void displayBookByCategory() throws DataAccessException{
@@ -54,9 +61,9 @@ public class Controller {
         boolean success = service.add(book);
 
         if (success) {
-            view.showMessage("Book added successfully.");
+            view.displayMessage("Book added successfully.");
         } else {
-            view.showMessage("Failed to add book. Please check the details and try again.");
+            view.displayMessage("Failed to add book. Please check the details and try again.");
         }
     }
 
