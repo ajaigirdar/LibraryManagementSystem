@@ -73,9 +73,28 @@ public class BookFileRepository implements BookRepository{
     }
 
     @Override
+    public boolean update(Book book) {
+        return false;
+    }
+
+    @Override
+    public boolean delete(Book book) {
+        return false;
+    }
+
+    @Override
+    public List<Book> findByCategory(BookCategory category) {
+        return null;
+    }
+
+    @Override
+    public Book findByDetails(BookCategory category, int shelfNumber, int position) {
+        return null;
+    }
+
+    @Override
     public List<Book> findAll() {
         return books;
     }
-
 
 }
