@@ -9,12 +9,12 @@ public class Book {
     private int yearPublished;
     private String isbn;
 
-    public Book(BookCategory category, int shelfNumber, int position, String author, int yearPublished, String isbn) {
+    public Book(BookCategory category, int shelfNumber, int position, int yearPublished, String author, String isbn) {
         this.category = category;
         this.shelfNumber = shelfNumber;
         this.position = position;
-        this.author = author;
         this.yearPublished = yearPublished;
+        this.author = author;
         this.isbn = isbn;
     }
 

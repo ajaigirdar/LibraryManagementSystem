@@ -4,9 +4,5 @@ public enum BookCategory {
     FANTASY,
     MYSTERY,
     SCI_FI,
-    NON_FICTION,
-    ROMANCE,
-    HISTORY,
-    CHILDREN,
-    REFERENCE;
+    NON_FICTION
 }

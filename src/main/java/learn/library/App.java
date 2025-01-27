@@ -1,14 +1,15 @@
 package learn.library;
 
 import learn.library.data.BookFileRepository;
+import learn.library.data.DataAccessException;
 import learn.library.domain.BookService;
 import learn.library.ui.Controller;
 import learn.library.ui.View;
 
 
 public class App {
-    public static void main(String[] args) {
-        BookFileRepository repository = new BookFileRepository();
+    public static void main(String[] args) throws DataAccessException {
+        BookFileRepository repository = new BookFileRepository("./data/books.csv");
         BookService service = new BookService(repository);
         View view = new View();
         Controller controller = new Controller(service, view);
