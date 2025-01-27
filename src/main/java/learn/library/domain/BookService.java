@@ -20,7 +20,7 @@ public class BookService {
     }
 
     public List<Book> findAll() throws DataFormatException{
-        return null;
+        return repository.findAll();
     }
 
     public Book findByCategory(BookCategory category) throws DataAccessException{

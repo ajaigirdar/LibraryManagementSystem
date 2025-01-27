@@ -1,7 +1,19 @@
 package learn.library;
 
+import learn.library.data.BookFileRepository;
+import learn.library.domain.BookService;
+import learn.library.ui.Controller;
+import learn.library.ui.View;
+
+
 public class App {
     public static void main(String[] args) {
+        BookFileRepository repository = new BookFileRepository();
+        BookService service = new BookService(repository);
+        View view = new View();
+        Controller controller = new Controller(service, view);
+
+        controller.run();
 
     /*
         -/library
@@ -18,16 +30,12 @@ public class App {
                 - View.java - handles all IO operations
                 - Controller.java - runs the app - manages the loop/switch
             App.java
-
-
-
-
-
-
-
-
-
      */
 
     }
+
+
+
+
 }
+

@@ -15,8 +15,27 @@ public class Controller {
         this.view = view;
     }
 
-    public void run(){
 
+
+    public void run(){
+        boolean running = true;
+
+        while (running) {
+            view.displayMenu();
+            int option = view.readOption();
+
+            switch (option) {
+                case 0 -> {
+                    System.out.println("Goodbye!");
+                    running = false;
+                }
+                case 1 -> System.out.println("Find Books by Category - Not Implemented");
+                case 2 -> System.out.println("Add a Book - Not Implemented");
+                case 3 -> System.out.println("Update a Book - Not Implemented");
+                case 4 -> System.out.println("Remove a Book - Not Implemented");
+                default -> System.out.println("Invalid option. Please try again.");
+            }
+        }
     }
 
     private void runMenuLoop() throws DataFormatException {
