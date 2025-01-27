@@ -1,5 +1,7 @@
 package learn.library.data;
 
 public class DataAccessException extends Exception {
-    // TODO: custom exception thrown by repository
+    public DataAccessException(String message, Throwable rootCause) {
+        super(message, rootCause);
+    }
 }
